@@ -25,27 +25,45 @@ This project is built using:
 
 ## 📱 Architecture
 
-```
-+-------------------+    +-----------------+    +-----------------+
-|   User Browser    |    |  Web Frontend   |    | Cognito UI      |
-+-------------------+    +-----------------+    +-----------------+
-        |                    |                    |
-        v                    v                    v
-+-------------------+    +-----------------+    +-----------------+
-|                   |    |  API Gateway    |    |  User Pool      |
-|                   |    +-----------------+    +-----------------+
-|                   |          |                    |
-|                   |          v                    |
-|                   |    +-----------------+        |
-|                   |    | Lambda Function |        |
-|                   |    +-----------------+        |
-|                   |          |                    |
-|                   |          v                    |
-|                   |    +-----------------+        |
-|                   |    |    S3 Bucket    |        |
-+-------------------+    +-----------------+        |
-        |                    |                    |
-        +--------------------+--------------------+
+```mermaid
+graph TD
+    subgraph "User Interface"
+        A[<span style="color:#007acc">User Browser</span>] --> B[<span style="color:#007acc">Web Frontend</span>]
+    end
+
+    subgraph "Authentication"
+        B --> F[<span style="color:#007acc">Cognito UI</span>]
+        F --> G[<span style="color:#007acc">User Pool</span>]
+        G --> B
+    end
+
+    subgraph "AWS Services"
+        C[<span style="color:#232f3e">API Gateway</span>]
+        D[<span style="color:#232f3e">Lambda Function</span>]
+        E[<span style="color:#232f3e">S3 Bucket</span>]
+    end
+
+    B --> C
+    C --> D
+    D --> E
+
+    style A fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+    style B fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+    style C fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
+    style D fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
+    style E fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
+    style F fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+    style G fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+
+    classDef userInterface fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+    classDef aws fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
+    classDef auth fill:#f0f8ff,stroke:#007acc,stroke-width:2px
+
+    %% AWS Icons (not directly supported in Mermaid, but using AWS colors)
+    subgraph "[<span style="color:#232f3e">AWS</span>]"
+        C -->|<span style="color:#232f3e">HTTP</span>| D
+        D -->|<span style="color:#232f3e">Presigned URL</span>| E
+    end
 ```
 
 ## 🌍 Region
