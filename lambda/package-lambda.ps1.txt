@@ -1,0 +1,10 @@
+$sourceFile = "generate_presigned_url.py"
+$zipFile = "lambda.zip"
+
+if (Test-Path $zipFile) {
+    Remove-Item $zipFile
+}
+
+Compress-Archive -Path $sourceFile -DestinationPath $zipFile
+
+Write-Output "✅ Packaged $sourceFile into $zipFile"

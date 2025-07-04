@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Serverless File Uploader</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input[type="file"] { margin-bottom: 10px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    #status { margin-top: 20px; color: green; }
+  </style>
+</head>
+<body>
+  <h1>Serverless File Uploader</h1>
+  <button onclick="login()">Login with Cognito</button>
+  <br><br>
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">Upload</button>
+  <div id="status"></div>
+
+  <script>
+    const COGNITO_DOMAIN = "https://uploader-demo-unique.auth.eu-west-1.amazoncognito.com";
+    const CLIENT_ID = "3eqlhmabac4h4nio4h4dmtnmbm";
+    const API_ENDPOINT = "https://dz84luyk9g.execute-api.eu-west-1.amazonaws.com";
+    const REDIRECT_URI = "http://localhost:3000";
+    const REGION = "eu-west-1";
+
+    function login() {
+      const loginUrl = `${COGNITO_DOMAIN}/login?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+      window.location.href = loginUrl;
+    }
+
+    function getIdTokenFromUrl() {
+      const hash = window.location.hash.substr(1);
+      const params = new URLSearchParams(hash);
+      return params.get("id_token");
+    }
+
+    async function uploadFile() {
+  const file = document.getElementById('fileInput').files[0];
+  if (!file) return alert("Please select a file");
+
+  const idToken = getIdTokenFromUrl();
+  if (!idToken) return alert("You must login first");
+
+  try {
+    const res = await fetch(`${API_ENDPOINT}/generate-presigned-url`, {
+      method: "POST",
+      headers: {
+        Authorization: idToken
+      }
+    });
+
+    if (!res.ok) throw new Error("Failed to get presigned URL");
+
+    const data = await res.json();
+    const { upload_url, file_key } = data;
+
+    const cleanFile = new Blob([file]);  // Strip Content-Type
+    const uploadRes = await fetch(upload_url, {
+      method: "PUT",
+      body: cleanFile
+    });
+
+    if (!uploadRes.ok) throw new Error("File upload failed");
+
+    document.getElementById("status").innerText = `Uploaded successfully: ${file_key}`;
+  } catch (err) {
+    alert("Error: " + err.message);
+    console.error(err);
+  }
+}
+
+  </script>
+</body>
+</html>
