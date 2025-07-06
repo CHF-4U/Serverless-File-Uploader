@@ -103,6 +103,7 @@ All AWS resources are deployed in `eu-west-1`.
    - S3 Bucket name
    - API Gateway endpoint
    - Cognito Hosted Login URL
+   - Cognito Domain
 
 ---
 
