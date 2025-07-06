@@ -6,7 +6,7 @@ import uuid
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
-    bucket = os.environ.get("UPLOAD_BUCKET", "serverless-file-uploader-demo")
+    bucket = os.environ.get("UPLOAD_BUCKET", "YOUR BUCKET NAME")
     key = f"uploads/{uuid.uuid4()}"
     headers = {
         "Content-Type": "application/json",
