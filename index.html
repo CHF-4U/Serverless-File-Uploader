@@ -19,11 +19,11 @@
   <div id="status"></div>
 
   <script>
-    const COGNITO_DOMAIN = "https://uploader-demo-unique.auth.eu-west-1.amazoncognito.com";
-    const CLIENT_ID = "3eqlhmabac4h4nio4h4dmtnmbm";
-    const API_ENDPOINT = "https://dz84luyk9g.execute-api.eu-west-1.amazonaws.com";
+    const COGNITO_DOMAIN = "REPLACE WITH YOUR COGNITO DOMAIN";
+    const CLIENT_ID = "REPLACE WITH YOUR COGNITO CLIENT ID";
+    const API_ENDPOINT = "REPLACE WITH YOUR API GATEWAY ENDPOINT";
     const REDIRECT_URI = "http://localhost:3000";
-    const REGION = "eu-west-1";
+    const REGION = "YOUR SELECTED REGION";
 
     function login() {
       const loginUrl = `${COGNITO_DOMAIN}/login?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
