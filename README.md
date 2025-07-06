@@ -68,7 +68,7 @@ graph TD
 
 ## 🌍 Region
 
-All AWS resources are deployed in `eu-west-1`.
+All AWS resources are deployed in `YOUR SELECTED REGION`.
 
 ---
 
@@ -84,6 +84,7 @@ All AWS resources are deployed in `eu-west-1`.
 
 1. **Clone the repository**
    ```bash
+   git clone https://github.com/chf-4u/serverless-file-uploader.git
    unzip serverless-file-uploader.zip
    cd serverless-file-uploader
    ```
@@ -104,6 +105,13 @@ All AWS resources are deployed in `eu-west-1`.
    - API Gateway endpoint
    - Cognito Hosted Login URL
    - Cognito Domain
+   - Cognito User Pool ID
+   - Cognito Client ID
+  
+5. **Update Placeholders in files**
+   Use the above outputs to update:
+   - Index.html file
+   - Variables.tf file 
 
 ---
 
