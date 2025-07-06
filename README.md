@@ -111,7 +111,8 @@ All AWS resources are deployed in `YOUR SELECTED REGION`.
 5. **Update Placeholders in files**
    Use the above outputs to update:
    - Index.html file
-   - Variables.tf file 
+   - Variables.tf file
+   - generate_presigned_url.py
 
 ---
 
