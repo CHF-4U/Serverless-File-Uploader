@@ -1,11 +1,11 @@
 variable "region" {
-  default = "eu-west-1"
+  default = "ENTER YOUR PREFERED REGION"
 }
 
 variable "bucket_name" {
-  default = "serverless-file-uploader-demo"
+  default = "ENTER YOUR BUCKET NAME"
 }
 
 variable "cognito_domain_prefix" {
-  default = "uploader-demo-unique"
+  default = "ENTER A DOMAIN"
 }
