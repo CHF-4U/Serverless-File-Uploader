@@ -24,8 +24,7 @@ This project is built using:
 ---
 
 ## Architecture
-
-![Untitled Diagram-Page-4 drawio](https://github.com/user-attachments/assets/55635b68-53dd-4892-bacf-4df0ebbe109c)
+![Untitled Diagram-Page-4 drawio](https://github.com/user-attachments/assets/04d22d8e-9245-400f-8570-0f0cf110695b)
 
 
 ---
