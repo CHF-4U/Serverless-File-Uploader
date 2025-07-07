@@ -2,7 +2,7 @@
 
 This secure file upload solution allows users to securely upload files to Amazon S3 using a modern web interface. The application leverages AWS serverless technologies to provide a scalable and cost-effective solution while maintaining enterprise-grade security through AWS Cognito authentication.
 
-## 🚀 Features
+## Features
 
 - Secure file uploads to Amazon S3
 - User authentication via AWS Cognito
@@ -12,7 +12,7 @@ This secure file upload solution allows users to securely upload files to Amazon
 - Presigned URLs for secure file uploads
 - Regional deployment in AWS eu-west-1
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 This project is built using:
 - **Amazon S3** for file storage
@@ -23,59 +23,14 @@ This project is built using:
 
 ---
 
-## 📱 Architecture
+## Architecture
 
 ![Untitled Diagram-Page-4 drawio](https://github.com/user-attachments/assets/55635b68-53dd-4892-bacf-4df0ebbe109c)
 
 
-```mermaid
-graph TD
-    subgraph "User Interface"
-        A[<span style="color:#007acc">User Browser</span>] --> B[<span style="color:#007acc">Web Frontend</span>]
-    end
-
-    subgraph "Authentication"
-        B --> F[<span style="color:#007acc">Cognito UI</span>]
-        F --> G[<span style="color:#007acc">User Pool</span>]
-        G --> B
-    end
-
-    subgraph "AWS Services"
-        C[<span style="color:#232f3e">API Gateway</span>]
-        D[<span style="color:#232f3e">Lambda Function</span>]
-        E[<span style="color:#232f3e">S3 Bucket</span>]
-    end
-
-    B --> C
-    C --> D
-    D --> E
-
-    style A fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-    style B fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-    style C fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
-    style D fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
-    style E fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
-    style F fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-    style G fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-
-    classDef userInterface fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-    classDef aws fill:#f5f5f5,stroke:#232f3e,stroke-width:2px
-    classDef auth fill:#f0f8ff,stroke:#007acc,stroke-width:2px
-
-    %% AWS Icons (not directly supported in Mermaid, but using AWS colors)
-    subgraph "[<span style="color:#232f3e">AWS</span>]"
-        C -->|<span style="color:#232f3e">HTTP</span>| D
-        D -->|<span style="color:#232f3e">Presigned URL</span>| E
-    end
-```
-
-## 🌍 Region
-
-All AWS resources are deployed in `YOUR SELECTED REGION`.
-
 ---
 
-## 🧰 Prerequisites
+## Prerequisites
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 - [Terraform](https://www.terraform.io/downloads)
@@ -83,7 +38,7 @@ All AWS resources are deployed in `YOUR SELECTED REGION`.
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 1. **Clone the repository**
    ```bash
@@ -119,7 +74,7 @@ All AWS resources are deployed in `YOUR SELECTED REGION`.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 .
@@ -135,7 +90,7 @@ All AWS resources are deployed in `YOUR SELECTED REGION`.
 
 ---
 
-## 📝 Git Ignore Recommendations
+## Git Ignore Recommendations
 
 Add these patterns to your `.gitignore`:
 ```
@@ -153,7 +108,7 @@ test.txt
 
 ---
 
-## 📝 Lambda Environment
+## Lambda Environment
 
 To test locally or update Lambda code:
 - Located in `lambda/generate_presigned_url.py`
@@ -169,7 +124,7 @@ terraform apply
 
 ---
 
-## 🧪 Testing the Upload
+## Testing the Upload
 
 ### 1. Run the HTML frontend locally
 
@@ -193,14 +148,14 @@ Go to your S3 bucket in the AWS Console. Uploaded files are stored in the `uploa
 
 ---
 
-## 🔐 Authentication
+## Authentication
 
 - Users are authenticated with Cognito using the Hosted UI.
 - The frontend extracts the `id_token` from the redirect URL and uses it to authenticate API requests.
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 The project uses Terraform variables defined in `variables.tf`. You can modify these values to customize your deployment:
 
@@ -212,7 +167,7 @@ variable "cognito_domain_prefix" // Unique domain prefix for Cognito
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 serverless-file-uploader/
@@ -226,7 +181,7 @@ serverless-file-uploader/
 
 ---
 
-## 🧹 Cleanup
+## Cleanup
 
 ```bash
 terraform destroy
