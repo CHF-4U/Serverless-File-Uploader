@@ -113,14 +113,6 @@ To test locally or update Lambda code:
 - Located in `lambda/generate_presigned_url.py`
 - Environment Variable (optional): `UPLOAD_BUCKET` defaults to the S3 bucket created.
 
-Rebuild the Lambda ZIP before applying changes:
-```bash
-cd lambda
-zip ../lambda.zip generate_presigned_url.py
-cd ..
-terraform apply
-```
-
 ---
 
 ## Testing the Upload
